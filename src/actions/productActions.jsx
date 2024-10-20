@@ -1,26 +1,26 @@
 import axios from "axios";
 
 import {
-    CREATE_PRODUCT_REQUEST,
-    CREATE_PRODUCT_SUCCESS,
-    CREATE_PRODUCT_FAIL,
-    CREATE_PRODUCT_RESET,
-    ALL_PRODUCT_REQUEST,
-    ALL_PRODUCT_SUCCESS,
-    ALL_PRODUCT_FAIL,
-    SINGLE_PRODUCT_REQUEST,
-    SINGLE_PRODUCT_SUCCESS,
-    SINGLE_PRODUCT_FAIL,
-    UPDATE_PRODUCT_REQUEST,
-    UPDATE_PRODUCT_SUCCESS,
-    UPDATE_PRODUCT_FAIL,
-    UPDATE_PRODUCT_RESET,
-    DELETE_PRODUCT_REQUEST,
-    DELETE_PRODUCT_SUCCESS,
-    DELETE_PRODUCT_RESET,
-    DELETE_PRODUCT_FAIL,
-    CLEAR_ERRORS,
-  } from "../constants/productConstants";
+  CREATE_PRODUCT_REQUEST,
+  CREATE_PRODUCT_SUCCESS,
+  CREATE_PRODUCT_FAIL,
+  CREATE_PRODUCT_RESET,
+  ALL_PRODUCT_REQUEST,
+  ALL_PRODUCT_SUCCESS,
+  ALL_PRODUCT_FAIL,
+  SINGLE_PRODUCT_REQUEST,
+  SINGLE_PRODUCT_SUCCESS,
+  SINGLE_PRODUCT_FAIL,
+  UPDATE_PRODUCT_REQUEST,
+  UPDATE_PRODUCT_SUCCESS,
+  UPDATE_PRODUCT_FAIL,
+  UPDATE_PRODUCT_RESET,
+  DELETE_PRODUCT_REQUEST,
+  DELETE_PRODUCT_SUCCESS,
+  DELETE_PRODUCT_RESET,
+  DELETE_PRODUCT_FAIL,
+  CLEAR_ERRORS,
+} from "../constants/productConstants";
 
 export const createProduct = (productData) => async (dispatch) => {
   try {
@@ -33,7 +33,7 @@ export const createProduct = (productData) => async (dispatch) => {
 
     const { data } = await axios.post(
       `${import.meta.env.VITE_APP_API
-}/api/v1/add/new/product`,
+      }/api/v1/add/new/product`,
       productData,
       config
     );
@@ -60,9 +60,9 @@ export const allProducts = () => async (dispatch) => {
 
     const { data } = await axios.get(
       `${import.meta.env.VITE_APP_API
-}/api/v1/products`
+      }/api/v1/products`
     );
-    
+
     console.log('Fetched data:', data);
 
     dispatch({
@@ -86,7 +86,7 @@ export const singleProduct = (id) => async (dispatch) => {
 
     const { data } = await axios.get(
       `${import.meta.env.VITE_APP_API
-}/api/v1/product/${id}`
+      }/api/v1/product/${id}`
     );
 
     dispatch({
@@ -111,7 +111,7 @@ export const updateProduct = (id, productData) => async (dispatch) => {
     };
     const { data } = await axios.put(
       `${import.meta.env.VITE_APP_API
-}/api/v1/product/${id}`,
+      }/api/v1/product/${id}`,
       productData,
       config
     );
@@ -142,7 +142,7 @@ export const deleteProduct = (id) => async (dispatch) => {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
     const { data } = await axios.delete(
       `${import.meta.env.VITE_APP_API
-}/api/v1/product/${id}`
+      }/api/v1/product/${id}`
     );
     dispatch({
       type: DELETE_PRODUCT_SUCCESS,
