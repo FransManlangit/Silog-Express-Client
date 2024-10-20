@@ -66,7 +66,7 @@ import {
         return {
           ...state,
           loading: false,
-          products: action.payload,
+          products: action.payload.products,
         };
       case ALL_PRODUCT_FAIL:
         console.log('ALL_PRODUCT_FAIL dispatched', action.payload);
