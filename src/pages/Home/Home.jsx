@@ -1,15 +1,20 @@
 import Navbar from "../../components/Navbar/Navbar";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allProducts, clearErrors } from "../../actions/productActions";
 import { Button } from 'primereact/button';
-import { Carousel } from 'primereact/carousel';
-import { Tag } from 'primereact/tag';
 import { message } from "antd"; 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
+import { FreeMode, Pagination } from 'swiper/modules';
+
+// Add this CSS in your CSS file
+import './Pagination.css'; // Make sure to replace with the correct path to your CSS file
 
 export default function Home() {
     const dispatch = useDispatch();
-
     const { error, loading, products } = useSelector((state) => state.products);
 
     useEffect(() => {
@@ -29,27 +34,15 @@ export default function Home() {
         }).format(price);
     };
 
-    // Carousel item template
-    const carouselItemTemplate = (product) => {
-        return (
-            <div className="product-item flex flex-col items-center">
-                <img
-                    src={product.images[0]?.url || "/images/placeholder.jpg"}
-                    alt={product.name}
-                    style={{
-                        width: "200px",
-                        height: "200px",
-                        objectFit: "cover",
-                    }}
-                    className="rounded shadow-md"
-                />
-                <p className="text-lg font-medium mt-2">{product.name}</p>
-                <p className="text-sm text-gray-500">{product.description}</p>
-                <Tag severity="success" value={formatPrice(product.price)} className="mt-2" />
-                <Button label="Add to Cart" className="mt-2 p-button-success" />
-            </div>
-        );
-    };
+    const itemTemplate = (product) => (
+        <div className="product-item flex flex-col items-center p-4 bg-white shadow-lg rounded-lg" key={product._id}>
+            <img
+                src={product.images[0]?.url || "/images/placeholder.jpg"} // Use a placeholder image if no image exists
+                alt={product.name}
+                className="w-48 h-48 object-cover rounded-full"
+            />
+        </div>
+    );
 
     return (
         <div className="container mx-auto py-32 bg-gray-100">
@@ -60,12 +53,8 @@ export default function Home() {
                 <div className="flex flex-col xl:flex-row gap-10 xl:gap-16 justify-center px-10 sm:px-20 md:px-32 lg:px-40 xl:px-48">
                     <div className="xl:w-3/6 flex justify-center text-center xl:text-left items-center font-montserrat">
                         <div className="flex flex-col justify-center items-center xl:items-start gap-4 font-serif">
-                            <p className="text-6xl font-bold text-[#D56F00]">
-                                Silog na Mabilis,
-                            </p>
-                            <p className="text-2xl text-zinc-500 font-semibold">
-                                Sarap na Walang Kaparis!
-                            </p>
+                            <p className="text-6xl font-bold text-[#D56F00]">Silog na Mabilis,</p>
+                            <p className="text-2xl text-zinc-500 font-semibold">Sarap na Walang Kaparis!</p>
                             <Button label="Order Now" className="bg-[#D56F00] text-white font-semibold py-2 px-4 rounded shadow-md hover:bg-[#E57C00] transition duration-300" />
                         </div>
                     </div>
@@ -84,23 +73,31 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* Menu Carousel */}
-            <div id="menu" className="flex flex-col gap-12 px-10 sm:px-20 md:px-32 lg:px-40 xl:px-48">
-                <div className="flex flex-row justify-center items-center font-cursive">
-                    <p className="font-normal text-4xl">We Serve</p>
-                </div>
-
-                {loading ? (
-                    <p>Loading products...</p>
-                ) : (
-                    <Carousel
-                        value={products}
-                        itemTemplate={carouselItemTemplate}
-                        numVisible={3}
-                        numScroll={1}
-                        className="custom-carousel"
-                    />
-                )}
+            {/* Swiper Slider with Products */}
+            <div className="flex flex-row justify-center items-center font-cursive">
+                <p className="font-bold text-zinc-500 text-5xl">We Serve</p>
+            </div>
+            <div className="px-10 sm:px-20 md:px-32 lg:px-40 xl:px-48 mt-12">
+                <Swiper
+                    slidesPerView={3}
+                    spaceBetween={30}
+                    freeMode={true}
+                    pagination={{ clickable: true }}
+                    modules={[FreeMode, Pagination]}
+                    className="mySwiper"
+                >
+                    {products && products.map((product) => (
+                        <SwiperSlide key={product._id}>
+                            <div className="flex flex-col items-center">
+                                <img
+                                    src={product.images[0]?.url || "/images/placeholder.jpg"}
+                                    alt={product.name}
+                                    className="w-48 h-48 object-cover rounded-full"
+                                />
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
             </div>
         </div>
     );
