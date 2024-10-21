@@ -54,11 +54,11 @@ const Navbar = () => {
                 >
                     <img
                         src="/images/Logo.png"
-                        height={80}
-                        width={80}
+                        height={148}
+                        width={161}
                         alt="Logo"
                     />
-                    <h1 className="font-montserrat font-bold text-lg text-[#D56F00]">Silog Xpress</h1>
+                    <h1 className="font-montserrat font-bold text-[24px] text-[#D56F00]">Silog Xpress</h1>
                 </a>
 
                 {/* Hamburger Icon for small screens */}
@@ -69,10 +69,11 @@ const Navbar = () => {
                 </div>
 
                 {/* Desktop Navigation (hidden on small screens) */}
-                <div className="hidden sm:flex flex-row justify-center items-center gap-8 w-4/12">
+                <div className="text-xl hidden sm:flex flex-row justify-center items-center gap-8 w-4/12">
                     {[
                         { href: "#home", name: "Home" },
                         { href: "#menu", name: "Menu" },
+                        { href: "#about", name: "About" },
                     ].map(({ href, name }) => (
                         <a
                             key={href}
@@ -93,8 +94,14 @@ const Navbar = () => {
                 <div className="hidden sm:flex flex-row justify-end items-center gap-4 w-4/12">
                     {/* Only one button here, not nested */}
                     <button className="flex items-center gap-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
-                        <FaBasketShopping size={30} className="text-[#FF7518]" />
+                        <FaBasketShopping size={45} className="text-[#FF7518]" />
                     </button>
+
+                    {/* Login Button */}
+                    <button className="border border-[#D56F00] text-[#D56F00] font-montserrat px-12 py-2 rounded-full hover:bg-[#D56F00] hover:text-white transition-colors duration-300">
+                        Login
+                    </button>
+
                 </div>
             </div>
 
@@ -104,12 +111,12 @@ const Navbar = () => {
                     <button onClick={toggleMenu} className="absolute top-5 right-5 text-white">
                         Close
                     </button>
-                    <div className="flex flex-col gap-8">
+                    <div className="flex flex-col gap-8 ">
                         {[
                             { href: "#home", name: "Home" },
-                            { href: "#services", name: "Services" },
-                            { href: "#portfolio", name: "Portfolio" },
-                            { href: "#ourteam", name: "Our Team" }
+                            { href: "#menu", name: "Menu" },
+                            { href: "#about", name: "About" },
+
                         ].map(({ href, name }) => (
                             <a
                                 key={href}

@@ -1,0 +1,11 @@
+/* Custom styles for Swiper pagination */
+.swiper-pagination-bullet {
+    background-color: orange !important; /* Change bullet color to orange */
+    opacity: 1; /* Ensures the bullet is fully opaque */
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #D56F00 !important; /* Change the active bullet color (optional) */
+}
+
+
