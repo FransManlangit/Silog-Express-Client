@@ -7,7 +7,12 @@ import "./App.css";
 
 import Home from "./pages/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
+
+import SignUp from "./pages/SignUp/SignUp";
+import SuccessVerify from "./pages/VerifyEmail/VerifyEmail";
+
 import Products from "./pages/Product/Product";
+
 
 
 function App() {
@@ -15,12 +20,15 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} exact="true" />
+        <Route path='/verify/email/:token/:id' element={<SuccessVerify />} exact='true' />
+        <Route path='/signup' element={<SignUp />} exact='true' />
         <Route
           path="/products"
           element={
             <Products/>
           }
         />
+      
       </Routes>
     </div>
   );
