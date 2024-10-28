@@ -6,6 +6,13 @@ import {
 import { thunk } from "redux-thunk";
 import { composeWithDevTools } from "@redux-devtools/extension";
 
+
+
+import {
+  authReducer,
+ 
+} from './reducers/userReducers';
+
 import {
   createProductReducer,
   productsReducer,
@@ -15,6 +22,10 @@ import {
 } from "./reducers/productReducers";
 
 const reducer = combineReducers({
+  authUser: authReducer,
+
+
+
   products: productsReducer,
   createProduct: createProductReducer,
   singleProduct: singleProductReducer,
