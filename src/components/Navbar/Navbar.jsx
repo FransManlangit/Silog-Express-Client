@@ -5,11 +5,31 @@ import { AiFillInstagram } from "react-icons/ai";
 import { FaTiktok } from "react-icons/fa6";
 import { AiOutlineMenu } from "react-icons/ai";
 import { FaBasketShopping } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+import { Logout } from "../../actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuItems,
+    Transition,
+} from "@headlessui/react";
+import {
+    ArrowLeftStartOnRectangleIcon,
+    ChevronDownIcon,
+    UserIcon,
+} from "@heroicons/react/16/solid";
+import { IoIosPeople } from "react-icons/io";
+
 
 const Navbar = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState("");
     const [menuOpen, setMenuOpen] = useState(false);
+    const { user, loading } = useSelector((state) => state.authUser);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -33,12 +53,19 @@ const Navbar = () => {
     }, []);
 
     const getLinkClass = (hash) => {
-        return activeSection === hash ? "text-black" : "text-[#FF7518]";
+        return activeSection === hash ? "text-zinc-500" : "text-[#FF7518]";
     };
 
     const getUnderlineClass = (hashes) => {
         return hashes.includes(activeSection) ? "scale-x-100" : "scale-x-0";
     };
+
+    const LogoutHandler = () => {
+        dispatch(Logout());
+        navigate("/");
+    };
+
+
 
     const toggleMenu = () => setMenuOpen(!menuOpen); // Toggle menu function
 
@@ -91,16 +118,78 @@ const Navbar = () => {
                     ))}
                 </div>
 
-                <div className="hidden sm:flex flex-row justify-end items-center gap-4 w-4/12">
+                <div className="hidden sm:flex flex-row justify-end items-center gap-10 w-4/12">
                     {/* Only one button here, not nested */}
                     <button className="flex items-center gap-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
                         <FaBasketShopping size={45} className="text-[#FF7518]" />
                     </button>
 
                     {/* Login Button */}
-                    <button className="border border-[#D56F00] text-[#D56F00] font-montserrat px-12 py-2 rounded-full hover:bg-[#D56F00] hover:text-white transition-colors duration-300">
-                        Login
-                    </button>
+                    <div>
+                        {user ? (
+                            <Menu>
+                                <MenuButton className="inline-flex items-center gap-2 rounded-full bg-[#D56F00] py-1.5 px-3 text-sm font-semibold text-white shadow-inner shadow-white/10 focus:outline-none hover:bg-[#D56F00] open:bg--500/90 focus:outline-white">
+                                    {user?.avatar?.url ? (
+                                        <img
+                                            src={user?.avatar?.url}
+                                            alt="SariSariCart Logo"
+                                            className="h-8 w-8 rounded-full"
+                                        />
+                                    ) : (
+                                        <UserIcon className="w-8 h-8 p-1" />
+                                    )}
+
+                                    <span>{user.firstname}</span>
+                                    <ChevronDownIcon className="w-4 h-4 fill-white/60" />
+                                </MenuButton>
+                                <Transition
+                                    enter="transition ease-out duration-75"
+                                    enterFrom="opacity-0 scale-95"
+                                    enterTo="opacity-100 scale-100"
+                                    leave="transition ease-in duration-100"
+                                    leaveFrom="opacity-100 scale-100"
+                                    leaveTo="opacity-0 scale-95"
+                                >
+                                    <MenuItems
+                                        anchor="bottom end"
+                                        className="w-52 origin-top-right rounded-xl bg-[#D56F00]/90 p-1 text-sm text-white focus:outline-none mt-1 space-y-1"
+                                    >
+                                        <MenuItem>
+                                            <a
+                                                className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 focus:bg-white/10"
+                                                href="/profile"
+                                            >
+                                                <UserIcon className="w-6 h-6 fill-white/60" />
+                                                Profile
+                                            </a>
+                                        </MenuItem>
+                                        <MenuItem>
+                                            <a className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 focus:bg-white/10"
+                                                href="/memberlist"
+                                            >
+                                                <IoIosPeople className="w-6 h-6 fill-white/60" />
+                                                Member List
+                                            </a>
+                                        </MenuItem>
+                                        <div className="my-1 h-px bg-white/5" />
+                                        <MenuItem>
+                                            <button
+                                                className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 focus:bg-white/10"
+                                                onClick={LogoutHandler}
+                                            >
+                                                <ArrowLeftStartOnRectangleIcon className="w-6 h-6 fill-white/60" />
+                                                Logout
+                                            </button>
+                                        </MenuItem>
+                                    </MenuItems>
+                                </Transition>
+                            </Menu>
+                        ) : (
+                            <button onClick={() => navigate("/login")} className="border border-[#D56F00] text-[#D56F00] font-montserrat px-12 py-2 rounded-full hover:bg-[#D56F00] hover:text-white transition-colors duration-300">
+                                Login
+                            </button>
+                        )}
+                    </div>
 
                 </div>
             </div>
