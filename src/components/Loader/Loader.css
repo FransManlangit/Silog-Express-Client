@@ -1,0 +1,39 @@
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.9); /* Light overlay for better focus */
+    backdrop-filter: blur(5px); /* Blurred background effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.loader-content {
+    text-align: center;
+    opacity: 0;
+    animation: fadeInText 1s ease-in-out forwards;
+}
+
+.loader-text {
+    margin-top: 1rem;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* Fade-in animation for smooth appearance */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInText {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+        

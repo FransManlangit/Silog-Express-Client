@@ -1,15 +1,18 @@
 import React from "react";
-import ClockLoader from 'react-spinners/ClockLoader';
+import { Spin } from 'antd'; // Ant Design spinner
+import { LoadingOutlined } from '@ant-design/icons'; // Loading icon from Ant Design
+import './Loader.css'; // Add custom CSS for transitions
 
 const Loader = () => {
     return (
-        <div className="flex justify-center items-center h-screen">
-            <ClockLoader
-                color="#D56F00"
-                height={5}
-                speedMultiplier={2}
-                width={109}
-            />
+        <div className="loader-overlay">
+            <div className="loader-content">
+                {/* Customize Spin with Ant Design's LoadingOutlined icon */}
+                <Spin
+                    indicator={<LoadingOutlined style={{ fontSize: 48, color: '#D56F00' }} spin />}
+                />
+                <p className="loader-text">Loading, please wait...</p>
+            </div>
         </div>
     );
 }
