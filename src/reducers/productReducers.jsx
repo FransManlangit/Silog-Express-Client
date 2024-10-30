@@ -82,7 +82,6 @@ import {
           error: null,
         };
       default:
-        console.log('Unknown action type:', action.type);
         return state;
     }
   };

@@ -12,7 +12,7 @@ const Login = () => {
     const dispatch = useDispatch();
     const location = useLocation();
 
-    const { isAuthenticated, error, loading } = useSelector((state) => state.authUser || {});
+    const { isAuthenticated, error, loading } = useSelector((state) => state.authUser);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const redirect = location.search ? location.search.split("=")[1] : "";

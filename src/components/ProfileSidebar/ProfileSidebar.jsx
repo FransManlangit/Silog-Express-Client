@@ -5,7 +5,7 @@ import { Avatar, Button, Divider, Image } from "antd";
 import { SlUser } from "react-icons/sl";
 
 export default function ProfileSidebar() {
-  const { user, loading, isLogout } = useSelector((state) => state.auth);
+  const { user, loading, isLogout } = useSelector((state) => state.authUser);
 
   useEffect((
 
@@ -27,7 +27,7 @@ export default function ProfileSidebar() {
               <div className="flex flex-col items-center">
                 <span className="font-extrabold text-normal tracking-normal text-xl">
                   <span className="text-[#1E4BCA]">
-                    {user.name}
+                    {user.firstname}
                   </span>
                 </span>
                 <span className="text-normal">{user.email}</span>
