@@ -19,13 +19,13 @@ const Login = () => {
 
     const handleSuccess = (message = '') => {
         toast.success(message, {
-            position: 'bottom-center',
+            position: 'top-center',
         });
     };
 
     const handleError = (error = '') => {
         toast.error(error, {
-            position: 'bottom-center',
+            position: 'top-center',
         });
     };
 
