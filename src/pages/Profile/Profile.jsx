@@ -5,6 +5,7 @@ import { LoadUser, updateProfile } from "../../actions/userActions";
 import { UploadOutlined } from "@ant-design/icons";
 import { toast } from 'react-hot-toast'; 
 import { useNavigate } from "react-router-dom";
+import ProfileSidebar from "../../components/ProfileSidebar/ProfileSidebar.jsx";
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -93,6 +94,9 @@ export default function Profile() {
   return (
     <div className="flex flex-1 flex-col container mx-auto py-20">
       <div className="flex relative gap-6">
+      <div className="sticky top-0">
+          <ProfileSidebar />
+        </div>
         <div className="sticky top-0"></div>
         <form className="flex flex-1 flex-col gap-20" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
           <div className="items-center">
