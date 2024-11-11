@@ -100,14 +100,14 @@ export default function Profile() {
         <div className="sticky top-0"></div>
         <form className="flex flex-1 flex-col gap-20" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
           <div className="items-center">
-            <p className="text-4xl">My Information</p>
+            <p className="text-4xl font-serif">My Information</p>
           </div>
           <div className="flex flex-col space-y-12">
             <div className="grid grid-cols-2 grid-rows-1 gap-4">
               
               {/* First Name Field */}
               <div className="space-y-1">
-                <p className="text-lg font-poppins">First Name <span className="text-red-500">*</span></p>
+                <p className="text-lg font-serif">First Name <span className="text-red-500">*</span></p>
                 <Form.Item validateStatus={errors.firstname ? 'error' : ''} help={errors.firstname}>
                   <Input
                     size="large"
@@ -120,7 +120,7 @@ export default function Profile() {
 
               {/* Last Name Field */}
               <div className="space-y-1">
-                <p className="text-lg font-poppins">Last Name <span className="text-red-500">*</span></p>
+                <p className="text-lg font-serif">Last Name <span className="text-red-500">*</span></p>
                 <Form.Item validateStatus={errors.lastname ? 'error' : ''} help={errors.lastname}>
                   <Input
                     size="large"
@@ -135,7 +135,7 @@ export default function Profile() {
 
             {/* Mobile Number Field */}
             <div className="space-y-1">
-              <p className="text-lg font-poppins">Mobile Number <span className="text-red-500">*</span></p>
+              <p className="text-lg font-serif">Mobile Number <span className="text-red-500">*</span></p>
               <Form.Item validateStatus={errors.mobilenumber ? 'error' : ''} help={errors.mobilenumber}>
                 <Input
                   size="large"
@@ -148,7 +148,7 @@ export default function Profile() {
 
             {/* Profile Avatar Field */}
             <div className="space-y-1">
-              <p className="text-lg font-poppins">Profile Avatar</p>
+              <p className="text-lg font-serif">Profile Avatar</p>
               <Upload {...fileProps} maxCount={1}>
                 <Button icon={<UploadOutlined />}>Upload Avatar</Button>
               </Upload>
