@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Logout } from "../../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from 'primereact/button';
+import { toast } from 'react-hot-toast';
 import {
     Menu,
     MenuButton,
@@ -58,6 +59,7 @@ const Navbar = () => {
 
     const LogoutHandler = () => {
         dispatch(Logout());
+        toast.success("Logged out successfully");
         navigate("/");
     };
 
