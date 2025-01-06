@@ -16,7 +16,7 @@ const SignUp = () => {
     const [formValues, setFormValues] = useState({
         firstname: '',
         lastname: '',
-        phone: '',
+        mobilenumber: '',
         email: '',
         password: '',
         confirmPassword: ''
@@ -24,16 +24,15 @@ const SignUp = () => {
 
     const handleSuccess = (message = '') => {
         toast.success(message, {
-            position: toast.POSITION.BOTTOM_CENTER,
+            position: "bottom-center",
         });
     };
 
     const handleError = (error = '') => {
         toast.error(error, {
-            position: toast.POSITION.BOTTOM_CENTER,
+            position: "bottom-center",
         });
     };
-
     useEffect(() => {
         if (error) {
             handleError(error);
@@ -61,7 +60,7 @@ const SignUp = () => {
         const formData = new FormData();
         formData.set('firstname', values.firstname);
         formData.set('lastname', values.lastname);
-        formData.set('phone', "+63" + values.phone);
+        formData.set('mobilenumber', "+63" + values.mobilenumber)
         formData.set('email', values.email);
         formData.set('password', values.password);
         dispatch(Register(formData));
@@ -140,11 +139,11 @@ const SignUp = () => {
     
                     <div className="space-y-1">
                         <p className="text-lg font-poppins">Mobile Number <span className="text-red-500">*</span></p>
-                        <Form.Item name="phone" rules={[{ required: true, message: "Mobile number is required" }]}>
+                        <Form.Item name="mobilenumber" rules={[{ required: true, message: "Mobile number is required" }]}>
                             <Input
                                 size="large"
-                                name="phone"
-                                value={formValues.phone}
+                                name="mobilenumber"
+                                value={formValues.mobilenumber}
                                 onChange={handleInputChange}
                                 className="border rounded-lg px-4 py-2 focus:border-[#D56F00] focus:ring-2 focus:ring-[#D56F00]"
                             />
@@ -200,7 +199,7 @@ const SignUp = () => {
                     {/* Ant Design Modal for Terms and Conditions */}
                     <Modal
                         title="Terms & Conditions"
-                        visible={showModal1}
+                        open={showModal1}
                         onCancel={toggleModal1}
                         footer={[
                             <Button key="accept" type="primary" onClick={() => {

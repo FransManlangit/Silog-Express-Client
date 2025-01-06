@@ -69,6 +69,12 @@ const Navbar = () => {
 
     };
 
+    // const ProductHandler = () => {
+    //     console.log("Product Navigation");
+    //     navigate("/products");
+
+    // };
+
 
 
     const toggleMenu = () => setMenuOpen(!menuOpen); // Toggle menu function
@@ -159,9 +165,11 @@ const Navbar = () => {
                                             </button>
                                         </MenuItem>
                                         <MenuItem>
-                                            <a className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 focus:bg-white/10" href="/user">
+                                            <a className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 focus:bg-white/10" href="/products"
+                                         
+                                            >
                                                 <IoIosPeople className="w-6 h-6 fill-white/60" />
-                                                Member List
+                                                Product List
                                             </a>
                                         </MenuItem>
                                         <div className="my-1 h-px bg-white/5" />

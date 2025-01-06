@@ -24,6 +24,7 @@ export default function Products() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
+  const [stock, setStock] = useState("");
   const [images, setImages] = useState([]);
 
   const [loading, setLoading] = useState(false);
@@ -48,6 +49,7 @@ export default function Products() {
       setFileList([]);
       setName("");
       setPrice("");
+      setStock("");
       setImages([]);
       setDescription("");
       setIsModalOpen(false);
@@ -65,6 +67,7 @@ export default function Products() {
     if (!name) errors.name = "Name is required";
     if (!price) errors.price = "Price is required";
     if (!description) errors.description = "Description is required";
+    if (!stock) errors.stock = "Stock is required";
 
     setErrors(errors);
 
@@ -115,6 +118,7 @@ export default function Products() {
     formData.append("name", name);
     formData.append("price", price);
     formData.append("description", description);
+    formData.append("stock", stock);
     images.forEach((image) => {
       formData.append("images", image);
     });
@@ -199,6 +203,31 @@ export default function Products() {
                     <span className="text-red-500 text-sm">{errors.price}</span>
                   )}
                 </div>
+
+                <div className="space-y-1">
+                    <p>
+                      Stock <span className="text-red-500">*</span>
+                    </p>
+                    <InputNumber
+                      name="stock"
+                      variant="filled"
+                      size="large"
+                      min={0}
+                      style={{
+                        width: "100%",
+                      }}
+                      placeholder="Product Stock"
+                      onChange={(value) => setStock(value)}
+                      value={stock}
+                      status={errors.stock ? "error" : null}
+                    />
+                    {errors.stock && (
+                      <span className="text-red-500 text-sm">
+                        {errors.stock}
+                      </span>
+                    )}
+                  </div>
+              
 
                 <div className="space-y-1">
                   <p>

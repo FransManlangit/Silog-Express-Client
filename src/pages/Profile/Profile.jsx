@@ -58,8 +58,8 @@ export default function Profile() {
     if (!mobilenumber) {
       errors.mobilenumber = "Mobile number is required";
     } else {
-      const phonePattern = /^[0-9]{10,15}$/;
-      if (!phonePattern.test(mobilenumber)) {
+      const mobilenumberPattern = /^[0-9]{10,15}$/;
+      if (!mobilenumberPattern.test(mobilenumber)) {
         errors.mobilenumber = "Invalid mobile number";
       }
     }
@@ -85,7 +85,7 @@ export default function Profile() {
       await dispatch(updateProfile(formData));
       toast.success("Profile Successfully Updated", { position: "top-center" });
       dispatch(LoadUser());
-      navigate("/");
+      navigate("/userprofile");
     } catch (error) {
       toast.error("Failed to update profile. Please try again.", { position: "top-center" });
     }
